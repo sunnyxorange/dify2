@@ -99,6 +99,11 @@ const translation = {
   back: '返回',
   noLoginMethod: '未配置身份认证方式',
   noLoginMethodTip: '请联系系统管理员添加身份认证方式',
+  signUp: '注册',
+  noAccount: '还没有账号?',
+  haveAccount: '已有账号?',
+  registerSuccess: '注册成功',
+  registerFailed: '注册失败',
 }
 
 export default translation

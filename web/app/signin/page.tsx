@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useSystemFeatures } from '@/hooks/use-system-features'
 import SSOAuth from './components/sso-auth'
 import { SSOProtocol } from '@/types/feature'
+import Link from 'next/link'
 
 const SignIn = () => {
   const { t } = useTranslation()
@@ -11,7 +12,6 @@ const SignIn = () => {
   const [ssoProtocol, setSsoProtocol] = useState<SSOProtocol | ''>('')
   
   useEffect(() => {
-    // 根据系统配置设置SSO协议
     if (systemFeatures?.sso_enforced_for_signin) {
       setSsoProtocol(systemFeatures.sso_enforced_for_signin_protocol as SSOProtocol)
     }
@@ -37,6 +37,21 @@ const SignIn = () => {
       {(systemFeatures?.enable_web_sso_switch_component || ssoProtocol) && (
         <SSOAuth protocol={ssoProtocol} />
       )}
+
+      {/* 注册入口 */}
+      {systemFeatures?.is_allow_register && (
+        <div className="text-center">
+          <span className="text-gray-500">{t('login.noAccount')} </span>
+          <Link href="/signup" className="text-primary-600 hover:text-primary-700">
+            {t('login.signUp')}
+          </Link>
+        </div>
+      )}
+
+      {/* 版本号 */}
+      <div className="text-xs text-gray-500 text-center mt-4">
+        v{process.env.NEXT_PUBLIC_VERSION || '0.0.0'}
+      </div>
     </div>
   )
 }
