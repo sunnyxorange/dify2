@@ -1,4 +1,5 @@
 'use client'
+import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSystemFeatures } from '@/hooks/use-system-features'
@@ -7,7 +8,7 @@ import { SSOProtocol } from '@/types/feature'
 import Link from 'next/link'
 import MailAndPasswordAuth from './components/mail-and-password-auth'
 
-const SignIn = () => {
+const SignIn: FC = () => {
   const { t } = useTranslation()
   const { data: systemFeatures } = useSystemFeatures()
   const [ssoProtocol, setSsoProtocol] = useState<SSOProtocol | ''>('')
@@ -24,7 +25,7 @@ const SignIn = () => {
       <p className="text-gray-600">{t('login.welcome')}</p>
 
       {/* 邮箱密码登录 */}
-      <MailAndPasswordAuth />
+      <MailAndPasswordAuth isInvite={false} allowRegistration={systemFeatures?.is_allow_register || false} />
 
       {/* SSO登录分隔线 */}
       {(systemFeatures?.enable_web_sso_switch_component || ssoProtocol) && (

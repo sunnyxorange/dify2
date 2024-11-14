@@ -85,6 +85,11 @@ class FeatureService:
         system_features.enable_social_oauth_login = dify_config.ENABLE_SOCIAL_OAUTH_LOGIN
         system_features.is_allow_register = dify_config.ALLOW_REGISTER
         system_features.is_allow_create_workspace = dify_config.ALLOW_CREATE_WORKSPACE
+        
+        if dify_config.SSO_ENABLED:
+            system_features.enable_web_sso_switch_component = True
+            system_features.sso_enforced_for_signin = True
+            system_features.sso_enforced_for_signin_protocol = 'oauth2'
 
     @classmethod
     def _fulfill_params_from_env(cls, features: FeatureModel):

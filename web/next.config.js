@@ -54,6 +54,10 @@ const nextConfig = {
       {
         source: '/signin',
         destination: '/app/signin',
+      },
+      {
+        source: '/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_PREFIX}/:path*`,
       }
     ]
   }
