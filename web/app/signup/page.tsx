@@ -7,6 +7,8 @@ import { useSystemFeatures } from '@/hooks/use-system-features'
 import SSOAuth from '../signin/components/sso-auth'
 import { register } from '@/service/auth'
 import Toast from '@/app/components/base/toast'
+import Input from '@/app/components/base/input'
+import Button from '@/app/components/base/button'
 
 const SignUp = () => {
   const { t } = useTranslation()
@@ -45,11 +47,12 @@ const SignUp = () => {
           <label className="block text-sm font-medium text-gray-700">
             {t('login.name')}
           </label>
-          <input
+          <Input
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            placeholder={t('login.namePlaceholder')}
+            className="mt-1"
             required
           />
         </div>
@@ -58,11 +61,12 @@ const SignUp = () => {
           <label className="block text-sm font-medium text-gray-700">
             {t('login.email')}
           </label>
-          <input
+          <Input
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            placeholder={t('login.emailPlaceholder')}
+            className="mt-1"
             required
           />
         </div>
@@ -71,22 +75,23 @@ const SignUp = () => {
           <label className="block text-sm font-medium text-gray-700">
             {t('login.password')}
           </label>
-          <input
+          <Input
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            placeholder={t('login.passwordPlaceholder')}
+            className="mt-1"
             required
           />
         </div>
 
-        <button
+        <Button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+          className='w-full'
         >
           {t('login.signUp')}
-        </button>
+        </Button>
       </form>
 
       {/* SSO登录分隔线 */}
@@ -105,7 +110,7 @@ const SignUp = () => {
       <div className="text-center">
         <span className="text-gray-500">{t('login.haveAccount')} </span>
         <Link href="/signin" className="text-primary-600 hover:text-primary-700">
-          {t('login.signIn')}
+          {t('login.signBtn')}
         </Link>
       </div>
     </div>
