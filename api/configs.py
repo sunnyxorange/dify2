@@ -4,4 +4,9 @@ import os
 MULTI_TENANT_ENABLED = os.getenv('MULTI_TENANT_ENABLED', 'false').lower() == 'true'
 TENANT_REGISTRATION_ENABLED = os.getenv('TENANT_REGISTRATION_ENABLED', 'false').lower() == 'true'
 TENANT_SSO_ENABLED = os.getenv('TENANT_SSO_ENABLED', 'false').lower() == 'true'
-TENANT_CUSTOM_DOMAIN_ENABLED = os.getenv('TENANT_CUSTOM_DOMAIN_ENABLED', 'false').lower() == 'true' 
+TENANT_CUSTOM_DOMAIN_ENABLED = os.getenv('TENANT_CUSTOM_DOMAIN_ENABLED', 'false').lower() == 'true'
+
+# 添加SSO相关配置
+ENTERPRISE_ENABLED = True
+SSO_ENABLED = True
+ALLOW_REGISTER = True  # 允许注册 

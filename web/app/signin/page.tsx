@@ -5,6 +5,7 @@ import { useSystemFeatures } from '@/hooks/use-system-features'
 import SSOAuth from './components/sso-auth'
 import { SSOProtocol } from '@/types/feature'
 import Link from 'next/link'
+import MailAndPasswordAuth from './components/mail-and-password-auth'
 
 const SignIn = () => {
   const { t } = useTranslation()
@@ -19,10 +20,11 @@ const SignIn = () => {
 
   return (
     <div className='flex flex-col gap-6'>
-      {/* 现有的登录表单 */}
-      <div className='flex flex-col gap-3'>
-        {/* ... 其他登录选项 ... */}
-      </div>
+      <h1 className="text-3xl font-bold">{t('login.pageTitle')}</h1>
+      <p className="text-gray-600">{t('login.welcome')}</p>
+
+      {/* 邮箱密码登录 */}
+      <MailAndPasswordAuth />
 
       {/* SSO登录分隔线 */}
       {(systemFeatures?.enable_web_sso_switch_component || ssoProtocol) && (
@@ -47,11 +49,6 @@ const SignIn = () => {
           </Link>
         </div>
       )}
-
-      {/* 版本号 */}
-      <div className="text-xs text-gray-500 text-center mt-4">
-        v{process.env.NEXT_PUBLIC_VERSION || '0.0.0'}
-      </div>
     </div>
   )
 }

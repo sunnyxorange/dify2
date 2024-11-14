@@ -45,6 +45,18 @@ const nextConfig = {
     ]
   },
   output: 'standalone',
+  async rewrites() {
+    return [
+      {
+        source: '/signup',
+        destination: '/app/signup',
+      },
+      {
+        source: '/signin',
+        destination: '/app/signin',
+      }
+    ]
+  }
 }
 
 module.exports = withMDX(nextConfig)

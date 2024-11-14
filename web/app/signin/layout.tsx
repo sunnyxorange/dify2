@@ -1,54 +1,27 @@
-import Script from 'next/script'
-import Header from './_header'
-import style from './page.module.css'
+'use client'
+import { useTranslation } from 'react-i18next'
+import LogoSite from '@/app/components/base/logo/logo-site'
 
-import cn from '@/utils/classnames'
-import { IS_CE_EDITION } from '@/config'
+export default function SigninLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const { t } = useTranslation()
 
-export default async function SignInLayout({ children }: any) {
-  return <>
-    {!IS_CE_EDITION && (
-      <>
-        <Script strategy="beforeInteractive" async src={'https://www.googletagmanager.com/gtag/js?id=AW-11217955271'}></Script>
-        <Script
-          id="ga-monitor-register"
-          dangerouslySetInnerHTML={{
-            __html: 'window.dataLayer2 = window.dataLayer2 || [];function gtag(){dataLayer2.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'AW-11217955271"\');',
-          }}
-        >
-        </Script>
-      </>
-    )}
-
-    <div className={cn(
-      style.background,
-      'flex w-full min-h-screen',
-      'sm:p-4 lg:p-8',
-      'gap-x-20',
-      'justify-center lg:justify-start',
-    )}>
-      <div className={
-        cn(
-          'flex w-full flex-col bg-white shadow rounded-2xl shrink-0',
-          'space-between',
-        )
-      }>
-        <Header />
-        <div className={
-          cn(
-            'flex flex-col items-center w-full grow justify-center',
-            'px-6',
-            'md:px-[108px]',
-          )
-        }>
-          <div className='flex flex-col md:w-[400px]'>
-            {children}
-          </div>
+  return (
+    <div className='flex flex-col min-h-screen bg-gray-50'>
+      <div className='flex items-center h-16 px-6 border-b border-gray-100 bg-white'>
+        <LogoSite />
+        <div className="ml-auto text-xs text-gray-500">
+          v{process.env.NEXT_PUBLIC_VERSION || '0.0.0'}
         </div>
-        <div className='px-8 py-6 system-xs-regular text-text-tertiary'>
-          © {new Date().getFullYear()} LangGenius, Inc. All rights reserved.
+      </div>
+      <div className='flex flex-1 justify-center items-center'>
+        <div className='w-[520px] p-6'>
+          {children}
         </div>
       </div>
     </div>
-  </>
+  )
 }
